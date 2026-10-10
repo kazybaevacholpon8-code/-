@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Адиля кыз узатуу — Чакыруу барагы</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #fcfbfa;
+      --card-bg: #ffffff;
+      --text-main: #332d29;
+      --text-gold: #c59b27;
+      --gold-light: #e6ca65;
+      --gold-gradient: linear-[#d4af37], #aa7c11;
+      --accent-soft: #f4ece1;
+      --shadow-soft: 0 10px 30px rgba(197, 155, 39, 0.08);
+      --border-gold: rgba(197, 155, 39, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: var(--card-bg);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.06);
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 40px;
+    }
+
+    /* Decorative Gold Top Waves */
+    .top-header-img {
+      width: 100%;
+      height: 260px;
+      background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .top-header-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(252,251,250,0.1) 0%, rgba(252,251,250,0.85) 75%, var(--card-bg) 100%);
+    }
+
+    .header-content {
+      text-align: center;
+      padding: 0 24px;
+      position: relative;
+      margin-top: -60px;
+      z-index: 2;
+    }
+
+    .sub-title {
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-gold);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .main-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.1;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #a87e1a 0%, #d4af37 50%, #8a640f 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+      gap: 12px;
+    }
+
+    .gold-divider::before, .gold-divider::after {
+      content: '';
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, var(--text-gold), transparent);
+    }
+
+    .gold-divider-ornament {
+      color: var(--text-gold);
+      font-size: 1.2rem;
+    }
+
+    .hosts-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .hosts-names {
+      font-size: 1.1rem;
+      color: var(--text-gold);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* Message Section */
+    .message-section {
+      padding: 24px;
+      text-align: center;
+      background-color: #faf8f5;
+      margin: 24px;
+      border-radius: 16px;
+      border: 1px solid var(--border-gold);
+      position: relative;
+    }
+
+    .message-text {
+      font-size: 0.95rem;
+      color: #554e48;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    /* Images Grid Inspired by Photos */
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 0 24px;
+      margin-bottom: 30px;
+    }
+
+    .photo-card {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 180px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-gold);
+      position: relative;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Details Section */
+    .details-section {
+      padding: 0 24px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .detail-item {
+      margin-bottom: 20px;
+    }
+
+    .detail-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-gold);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .detail-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .address-box {
+      background: #ffffff;
+      border: 1px dashed var(--text-gold);
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+
+    .address-text {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .btn-map {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #c59b27, #aa7c11);
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      box-shadow: 0 4px 15px rgba(197, 155, 39, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    /* Countdown Timer */
+    .timer-section {
+      padding: 24px;
+      margin: 0 24px 30px;
+      background: linear-gradient(135deg, #332d29 0%, #1f1a17 100%);
+      border-radius: 16px;
+      color: #ffffff;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .timer-title {
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+
+    .timer-grid {
+      display: flex;
+      justify-content: space-around;
+      gap: 8px;
+    }
+
+    .timer-box {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 10px 4px;
+      border-radius: 8px;
+      border: 1px solid rgba(230, 202, 101, 0.2);
+    }
+
+    .timer-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .timer-unit {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+
+    /* RSVP Form */
+    .rsvp-section {
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    .section-head {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .rsvp-sub {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border-gold);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      background-color: #faf8f5;
+      outline: none;
+      transition: border 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--text-gold);
+      background-color: #ffffff;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .radio-btn {
+      flex: 1;
+      position: relative;
+    }
+
+    .radio-btn input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .radio-btn label {
+      display: block;
+      padding: 10px;
+      text-align: center;
+      border: 1px solid var(--border-gold);
+      border-radius: 10px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      background-color: #faf8f5;
+      transition: all 0.3s ease;
+    }
+
+    .radio-btn input:checked + label {
+      background: linear-gradient(135deg, #c59b27, #aa7c11);
+      color: white;
+      border-color: transparent;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      background: linear-gradient(135deg, #332d29, #1f1a17);
+      color: var(--gold-light);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      transition: all 0.3s ease;
+    }
+
+    /* Music Player Button Floating */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c59b27, #aa7c11);
+      color: white;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      outline: none;
+    }
+
+    .music-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    .music-playing {
+      animation: rotateSlow 8s linear infinite;
+    }
+
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header Image -->
+    <div class="top-header-img">
+      <div class="top-header-overlay"></div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="header-content">
+      <div class="sub-title">Кыз узатуу</div>
+      <h1 class="main-title">Адиля</h1>
+      
+      <div class="gold-divider">
+        <span class="gold-divider-ornament">❖</span>
+      </div>
+
+      <div class="hosts-text">Той ээлери:</div>
+      <div class="hosts-names">Алмазбек & Гульбара</div>
+    </div>
+
+    <!-- Message Block -->
+    <div class="message-section">
+      <p class="message-text">
+        "Урматтуу туугандар, куда-сөөктөр, дос-жарандар жана жакындарыбыз!<br><br>
+        Сиздерди сүйүктүү кызыбыз <strong>Адилянын</strong> кыз узатуу тоюна арналган ак дасторконубуздун сыйлуу коногу болууга чакырабыз.<br><br>
+        Кызыбыздын жаңы жашоого кадам таштаган кубанычтуу күнүндө биз менен бирге болуп, ак батаңыздарды берип, кубанычыбызды тең бөлүшүүгө чакырабыз!"
+      </p>
+    </div>
+
+    <!-- Photo Gallery -->
+    <div class="photo-gallery">
+      <div class="photo-card">
+        <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=600&q=80" alt="Улуттук шөкүлө">
+      </div>
+      <div class="photo-card">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Кыз узатуу салтанаты">
+      </div>
+    </div>
+
+    <!-- Details Section -->
+    <div class="details-section">
+      <div class="detail-item">
+        <div class="detail-label">Той күнү</div>
+        <div class="detail-value">17 Октябрь 2026</div>
+      </div>
+
+      <div class="detail-item">
+        <div class="detail-label">Дареги</div>
+        <div class="address-box">
+          <div class="address-text">Нарын району, Алыш айылы (Үйдөн болот)</div>
+          <a href="https://maps.google.com" target="_blank" class="btn-map">
+            📍 Картадан көрүү
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="timer-section">
+      <div class="timer-title">Тойго чейин калды:</div>
+      <div class="timer-grid">
+        <div class="timer-box">
+          <div class="timer-num" id="days">00</div>
+          <div class="timer-unit">Күн</div>
+        </div>
+        <div class="timer-box">
+          <div class="timer-num" id="hours">00</div>
+          <div class="timer-unit">Саат</div>
+        </div>
+        <div class="timer-box">
+          <div class="timer-num" id="minutes">00</div>
+          <div class="timer-unit">Мүнөт</div>
+        </div>
+        <div class="timer-box">
+          <div class="timer-num" id="seconds">00</div>
+          <div class="timer-unit">Секунд</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RSVP Section -->
+    <div class="rsvp-section">
+      <h2 class="section-head">Катышууну ырастоо</h2>
+      <p class="rsvp-sub">Сураныч, катышууңузду алдын ала билдирип коюңуз</p>
+
+      <form id="rsvpForm">
+        <div class="form-group">
+          <label for="guestName">Аты-жөнүңүз:</label>
+          <input type="text" id="guestName" class="form-control" placeholder="Мисалы: Асан & Айгүл" required>
+        </div>
+
+        <div class="radio-group">
+          <div class="radio-btn">
+            <input type="radio" id="attending" name="attendance" value="Барам" checked>
+            <label for="attending">Кубаныч менен барабыз</label>
+          </div>
+          <div class="radio-btn">
+            <input type="radio" id="notAttending" name="attendance" value="Бара албайм">
+            <label for="notAttending">Келе албайбыз</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="wishes">Ак батаңыз / Тилегиңиз:</label>
+          <textarea id="wishes" class="form-control" rows="3" placeholder="Каалоо-тилегиңизди жазыңыз..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Жөнөтүү (WhatsApp)</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Music Button Floating -->
+  <button class="music-btn" id="musicToggle" aria-label="Музыка">
+    <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+  </button>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Countdown Timer Logic
+    const eventDate = new Date("October 17, 2026 10:00:00").getTime();
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const difference = eventDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+        document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+        document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+      } else {
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("minutes").innerText = "00";
+        document.getElementById("seconds").innerText = "00";
+      }
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // RSVP WhatsApp Integration
+    document.getElementById("rsvpForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("guestName").value;
+      const attendance = document.querySelector('input[name="attendance"]:checked').value;
+      const wishes = document.getElementById("wishes").value;
+
+      let text = `Саламатсыздарбы! Мен: ${name}\nКатышуу: ${attendance}`;
+      if (wishes.trim() !== '') {
+        text += `\nКаалоо-тилек: ${wishes}`;
+      }
+
+      // WhatsApp link (Insert organizers' phone number if needed)
+      const encodedText = encodeURIComponent(text);
+      window.open(`https://wa.me/?text=${encodedText}`, '_blank');
+    });
+
+    // Background Music Control
+    const musicBtn = document.getElementById("musicToggle");
+    const audio = document.getElementById("bgMusic");
+    let isPlaying = false;
+
+    musicBtn.addEventListener("click", function() {
+      if (isPlaying) {
+        audio.pause();
+        musicBtn.classList.remove("music-playing");
+      } else {
+        audio.play().catch(() => {});
+        musicBtn.classList.add("music-playing");
+      }
+      isPlaying = !isPlaying;
+    });
+  </script>
+</body>
+</html>
